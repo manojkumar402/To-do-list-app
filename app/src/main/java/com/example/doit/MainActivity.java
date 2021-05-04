@@ -8,13 +8,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ClipData;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import com.example.doit.Adapter.ToDoAdapter;
 import com.example.doit.Adapter.TouchHelper;
 import com.example.doit.Model.ToDoModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -38,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
     private List<ToDoModel> mList;
     private Query query;
     private ListenerRegistration listenerRegistration;
+    private Button signOutBtn;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
         recyclerView = findViewById(R.id.recyclerview);
         mFab = findViewById(R.id.floatingActionButton);
         firestore = FirebaseFirestore.getInstance();
+        signOutBtn = findViewById(R.id.get_started);
+        mAuth = FirebaseAuth.getInstance();
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
@@ -64,6 +71,15 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
         itemTouchHelper.attachToRecyclerView(recyclerView);
         showData();
         recyclerView.setAdapter(adapter);
+
+        signOutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAuth.signOut();
+                startActivity(new Intent(MainActivity.this,Login.class));
+                finish();
+            }
+        });
     }
     private void showData(){
         query = firestore.collection("task").orderBy("time", Query.Direction.DESCENDING);
