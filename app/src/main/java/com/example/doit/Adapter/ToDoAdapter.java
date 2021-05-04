@@ -64,7 +64,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
 
         ToDoModel toDoModel = todoList.get(position);
         holder.mCheckBox.setText(toDoModel.getTask());
-        holder.mDueDateTv.setText("Due On"+toDoModel.getDue());
+        holder.mDueDateTv.setText("Due On "+toDoModel.getDue());
 
         holder.mCheckBox.setChecked(toBoolean(toDoModel.getStatus()));
         holder.mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

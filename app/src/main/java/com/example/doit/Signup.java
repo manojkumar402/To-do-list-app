@@ -64,14 +64,14 @@ public class Signup extends AppCompatActivity {
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                Toast.makeText(Signup.this, "Regidtered sucess", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Signup.this, "registration success", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(Signup.this,Login.class));
                                 finish();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(Signup.this, "Registeration error", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Signup.this, "registration error", Toast.LENGTH_SHORT).show();
                     }
                 });
             }else{
