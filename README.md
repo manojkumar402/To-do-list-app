@@ -1,4 +1,4 @@
-# Todo App
+# Todo App✔
 
 This is android application that keep track of errands and tasks that need to be done by user. This application will be like a task keeper where the user will be able to enter the tasks they need to complete.
 ### Preview of the App
